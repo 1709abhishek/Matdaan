@@ -43,7 +43,7 @@ module.exports.create = async function(req,res){
 // }
 //controller function for deleting the product
 module.exports.delete = function(req, res) {
-
+    Option.deleteMany({question: req.params.id})
     Question.remove({
       _id: req.params.id
     }, function(err, question) {
@@ -55,7 +55,25 @@ module.exports.delete = function(req, res) {
 
 module.exports.view = function(req,res){
 
+    Question.find({})
+    .populate('Question')
+    .populate({
+    path: 'Option',
+    populate: {
+        path:'Question'
+    }
+})
+.exec(function(err, question){
 
+    if (err){
+        console.log(err);
+    }
+        console.log(question);
+        return res.json(200,{
+            message: "Question showing with options successfully",
+            question: question
+        });
+});
 }
 
 

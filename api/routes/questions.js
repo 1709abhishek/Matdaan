@@ -10,4 +10,6 @@ router.post('/:id/delete', questionsController.delete);
 
 router.post('/:id/options/create', questionsController.createOption);
 
+router.get('/questions/:id', questionsController.view);
+
 module.exports = router;

@@ -29,9 +29,9 @@ module.exports.delete = function(req, res) {
     });
 };
 
-module.exports.view = function(req,res){
+module.exports.view = async function(req,res){
 
-    Question.find({})
+    Question.find({id: req.params.id})
     .populate('Option')
 .exec(function(err, question){
 
@@ -39,11 +39,12 @@ module.exports.view = function(req,res){
         console.log(err);
     }
         console.log(question);
-        return res.json(200,{
-            message: "Question showing with options successfully",
+        return res.json(200, {
+            message: "here is your query",
             question: question
         });
 });
+
 }
 
 // create options for a question

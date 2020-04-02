@@ -6,10 +6,10 @@ const questionsController = require('../controllers/questionsController');
 
 router.post('/create', questionsController.create);
 
-router.post('/:id/delete', questionsController.delete);
+router.delete('/:id/delete', questionsController.delete);
 
 router.post('/:id/options/create', questionsController.createOption);
 
-router.post('/questions/:id', questionsController.view);
+router.get('/:id', questionsController.view);
 
 module.exports = router;

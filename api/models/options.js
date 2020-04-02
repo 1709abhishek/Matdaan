@@ -11,8 +11,8 @@ const optionSchema = new mongoose.Schema({
         type: Number,
     },
     link_to_vote: {
-        type: String;
-    }
+        type: String
+    },
     question:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Question'

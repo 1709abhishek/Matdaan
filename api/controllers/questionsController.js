@@ -1,4 +1,5 @@
 const Question = require('../models/questions');
+const Option = require('../models/options');
 
 // creating a question
 module.exports.create = async function(req,res){
@@ -51,6 +52,29 @@ module.exports.delete = function(req, res) {
       return res.json({ message: 'question successfully deleted' });
     });
 };
+
+module.exports.view = function(req,res){
+
+
+}
+
+
+module.exports.createOption = async function(req,res){
+    try {
+        var new_option = await new Option(req.body);
+        new_option.question = req.params.id
+        let option = await new_option.save();
+        return res.json(200,{
+            message: "option created successfully",
+            option: option
+        });
+    } catch (err) {
+        console.log('********',err);
+        return res.json(500, {
+            message: "Internal Server Error"
+        });
+    }
+}
 
 
 

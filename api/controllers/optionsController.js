@@ -16,7 +16,7 @@ module.exports.delete = function(req, res) {
 //controller function for updating the options
 module.exports.update = function(req, res, query) {
     Option.findOneAndUpdate({_id: req.params.id}, {new: true}, function(err, option) {
-        // Product found. Update  the quantity.
+        // option found. Update  the quantity.
         option.votes = Number(option.votes) + 1;
         option.save(function (error, option) {
             if (error) {

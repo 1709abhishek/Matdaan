@@ -18,6 +18,7 @@ module.exports.create = async function(req,res){
     }
 }
 
+// deleting the options
 module.exports.delete = function(req, res) {
     Option.deleteMany({question: req.params.id})
     Question.remove({
@@ -29,6 +30,7 @@ module.exports.delete = function(req, res) {
     });
 };
 
+//show all the question with the given id and show options in them
 module.exports.view = async function(req,res){
 
     Question.find({id: req.params.id})

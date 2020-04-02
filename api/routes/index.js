@@ -2,10 +2,10 @@ const express = require('express');
 
 const router = express.Router();
 
-// routing to doctors
+// routing to questions
 router.use('/questions', require('./questions'));
 
-// routing to patients
+// routing to options
 router.use('/options', require('./options'));
 
 

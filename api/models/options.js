@@ -13,9 +13,9 @@ const optionSchema = new mongoose.Schema({
     link_to_vote: {
         type: String
     },
-    question:{
+    question: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Question'
+        ref: 'Option'
     }
 }, {
         timestamps: true

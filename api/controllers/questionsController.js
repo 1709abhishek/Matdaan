@@ -33,8 +33,10 @@ module.exports.delete = function(req, res) {
 //show all the question with the given id and show options in them
 module.exports.view = async function(req,res){
 
-    Question.find({id: req.params.id})
-    .populate('Option')
+    await Question.findById(req.params.id)
+    .populate({
+        path: 'options'
+    })
 .exec(function(err, question){
 
     if (err){
@@ -53,8 +55,12 @@ module.exports.view = async function(req,res){
 module.exports.createOption = async function(req,res){
     try {
         var new_option = await new Option(req.body);
-        new_option.question = req.params.id
-        new_option.link_to_vote = "http://localhost:3000/options/:id/add_vote"
+        new_option.question = req.params.id;
+        new_option.link_to_vote = "http://localhost:8000/options/:id/add_vote";
+        let ques = await Question.findById(req.params.id);
+        await console.log('#####',ques);
+        await ques.options.push(new_option);
+        await ques.save();
         let option = await new_option.save();
         return res.json(200,{
             message: "option created successfully",

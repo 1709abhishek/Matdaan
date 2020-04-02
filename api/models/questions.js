@@ -7,7 +7,14 @@ const questionSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
-    }
+    },
+    // include the array of ids of all options in this questionSchema itself
+    options: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Option'
+        }
+    ]
 }, {
         timestamps: true
 });

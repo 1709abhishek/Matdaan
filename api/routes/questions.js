@@ -14,6 +14,6 @@ router.delete('/:id/delete', questionsController.delete);
 router.post('/:id/options/create', questionsController.createOption);
 
 //router to show all the questions with present options
-router.get('/:id', questionsController.view);
+router.post('/:id', questionsController.view);
 
 module.exports = router;

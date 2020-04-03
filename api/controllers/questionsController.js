@@ -56,7 +56,7 @@ module.exports.createOption = async function(req,res){
     try {
         var new_option = await new Option(req.body);
         new_option.question = req.params.id;
-        new_option.link_to_vote = req.protocol + "://" + req.headers + "/options/" + req.params.id +"/add_vote";
+        new_option.link_to_vote = req.protocol + "://" + req.headers.host + "/options/" + req.params.id +"/add_vote";
         let ques = await Question.findById(req.params.id);
         await console.log('#####',ques);
         await ques.options.push(new_option);
